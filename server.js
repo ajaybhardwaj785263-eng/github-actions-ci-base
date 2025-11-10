@@ -1,19 +1,23 @@
 'use strict';
 
 const express = require('express');
+const app = express();
 
 // Constants
 const PORT = 8080;
 const HOST = '0.0.0.0';
 
-// App
-const app = express();
-
+// Route
 app.get('/', (req, res) => {
-  res.send('CPSY 350 Project: GitHub Actions CI. SAIT ID:000123456');
+  res.status(200).send('CPSY 350 Project: GitHub Actions CI. SAIT ID:000123456');
 });
 
-// Start server
-app.listen(PORT, HOST, () => {
-  console.log(`Server running at http://${HOST}:${PORT}`);
-});
+// Export app for testing
+module.exports = app;
+
+// Start the server only when running directly
+if (require.main === module) {
+  app.listen(PORT, HOST, () => {
+    console.log(`Server running at http://${HOST}:${PORT}`);
+  });
+}
