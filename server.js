@@ -1,3 +1,4 @@
+
 'use strict';
 
 
@@ -28,6 +29,6 @@ const server = app.listen(PORT, HOST, () => {
 
 });
 
-Export both app and server for testing
+//Export both app and server for testing
 
 module.exports = { app, server };
