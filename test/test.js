@@ -1,21 +1,20 @@
 const request = require('supertest');
-const { app, server } = require('../server'); // ✅ Destructure both
-const assert = require('assert');
 
 describe('loading express', function () {
-  after(function (done) {
-    // ✅ Close the server after tests
-    server.close(done);
+  let server;
+  beforeEach(function () {
+    server = require('../server');
   });
-
-  it('responds to /', function (done) {
-    request(app)
+  afterEach(function () {
+    server.close();
+  });
+  it('responds to /', function testSlash(done) {
+    request(server)
       .get('/')
       .expect(200, done);
   });
-
-  it('404 everything else', function (done) {
-    request(app)
+  it('404 everything else', function testPath(done) {
+    request(server)
       .get('/foo/bar')
       .expect(404, done);
   });
