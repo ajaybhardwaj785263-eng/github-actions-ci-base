@@ -25,12 +25,14 @@ app.get('/', (req, res) => {
 
 // Start server
 
-app.listen(PORT, HOST, () => {
+const server = app.listen(PORT, HOST, () => {
 
   console.log(`Server running at http://${HOST}:${PORT}`);
 
 });
 
 
-module.exports = app;
+// Export server for CI tests
+
+module.exports = server;
 
